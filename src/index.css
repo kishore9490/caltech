@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --cal-orange: #FF6B00;
+    --cal-orange-glow: rgba(255, 107, 0, 0.4);
+    --cal-amber: #F59E0B;
+    --cal-dark: #08090D;
+    --cal-graphite: #0F1218;
+    --cal-surface: #151922;
+    --cal-border: rgba(255, 255, 255, 0.08);
+  }
+
+  body {
+    background-color: #07080c;
+    color: #e2e8f0;
+    font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
+  }
+
+  #root {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    text-align: left;
+    min-height: 100vh;
+  }
+}
+
+/* Technical Monospace & Display Classes */
+.font-mono-tech {
+  font-family: 'JetBrains Mono', monospace;
+  font-feature-settings: "tnum" 1, "zero" 1;
+}
+
+/* Precision Metrology Grid */
+.bg-precision-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.bg-precision-grid-dense {
+  background-size: 16px 16px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 107, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 107, 0, 0.05) 1px, transparent 1px);
+}
+
+.bg-radial-vignette {
+  background: radial-gradient(circle at 50% 30%, rgba(255, 107, 0, 0.12) 0%, rgba(10, 12, 16, 0.8) 50%, #07080c 100%);
+}
+
+/* Precision Crosshairs and Laser Effects */
+.laser-beam-horizontal {
+  box-shadow: 0 0 15px #ff6b00, 0 0 30px #ff6b00, 0 0 60px rgba(255, 107, 0, 0.6);
+}
+
+.laser-beam-vertical {
+  box-shadow: 0 0 15px #ff6b00, 0 0 30px #ff6b00, 0 0 60px rgba(255, 107, 0, 0.6);
+}
+
+.orange-glow {
+  box-shadow: 0 0 25px rgba(255, 107, 0, 0.25);
+}
+
+.orange-glow-strong {
+  box-shadow: 0 0 40px rgba(255, 107, 0, 0.45);
+}
+
+/* Custom Metrology Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #090b10;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f2533;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 107, 0, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff6b00;
+}
+
+/* Keyframe animations */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(1000%);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes radarSweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-scanline {
+  animation: scanline 4s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.animate-radar-sweep {
+  animation: radarSweep 6s linear infinite;
+}
+
+.animate-float-slow {
+  animation: floatSlow 4s ease-in-out infinite;
+}
+
+/* Glassmorphism */
+.glass-panel {
+  background: rgba(18, 22, 31, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover:hover {
+  border-color: rgba(255, 107, 0, 0.35);
+  box-shadow: 0 10px 30px -10px rgba(255, 107, 0, 0.15);
+}

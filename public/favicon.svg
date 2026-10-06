@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <linearGradient id="calOrangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFA000" />
+      <stop offset="50%" stop-color="#FF6B00" />
+      <stop offset="100%" stop-color="#D84315" />
+    </linearGradient>
+  </defs>
+
+  <rect width="120" height="120" rx="24" fill="#080A0F"/>
+
+  <!-- Outer Circular Circuit Arc (C) -->
+  <path d="M 52 16 A 44 44 0 1 0 102 78" stroke="url(#calOrangeGrad)" stroke-width="8" stroke-linecap="round" fill="none"/>
+  <path d="M 54 26 A 34 34 0 1 0 94 72" stroke="url(#calOrangeGrad)" stroke-width="4.5" stroke-linecap="round" fill="none" opacity="0.85"/>
+
+  <!-- Circuit Branch Nodes -->
+  <circle cx="52" cy="16" r="5" fill="#FFFFFF" stroke="#FF6B00" stroke-width="2.5" />
+  <circle cx="102" cy="78" r="5" fill="#FFFFFF" stroke="#FF6B00" stroke-width="2.5" />
+
+  <!-- Central Circuit T -->
+  <path d="M 38 38 L 88 38" stroke="url(#calOrangeGrad)" stroke-width="7" stroke-linecap="round" />
+  <circle cx="38" cy="38" r="4.5" fill="#FFFFFF" stroke="#FF6B00" stroke-width="2" />
+  <circle cx="88" cy="38" r="4.5" fill="#FFFFFF" stroke="#FF6B00" stroke-width="2" />
+
+  <path d="M 60 38 L 60 100" stroke="url(#calOrangeGrad)" stroke-width="8" stroke-linecap="round" />
+  <circle cx="60" cy="102" r="5.5" fill="#FFFFFF" stroke="#FF6B00" stroke-width="2.5" />
+
+  <!-- Parallel Inner Traces -->
+  <path d="M 52 47 L 52 86" stroke="url(#calOrangeGrad)" stroke-width="4" stroke-linecap="round" />
+  <circle cx="52" cy="88" r="3.5" fill="#FFFFFF" />
+
+  <path d="M 68 47 L 68 76" stroke="url(#calOrangeGrad)" stroke-width="4" stroke-linecap="round" />
+  <circle cx="68" cy="78" r="3.5" fill="#FFFFFF" />
+</svg>
