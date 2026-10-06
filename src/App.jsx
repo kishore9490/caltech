@@ -37,8 +37,9 @@ function App() {
   };
 
   return (
-    <Router>
+    <Router basename={import.meta.env.BASE_URL}>
       <ScrollToTop />
+
       <div className="min-h-screen bg-[#07080c] text-slate-100 flex flex-col selection:bg-[#ff6b00]/30 selection:text-white pb-16 xl:pb-0">
         {/* Floating Top Navigation */}
         <Navbar onOpenBooking={handleOpenBooking} />
