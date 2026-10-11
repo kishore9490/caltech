@@ -42,7 +42,7 @@ export default function GlobalReach({ onOpenBooking }) {
           </p>
         </div>
 
-        {/* Big 5000+ Typographic Banner with Integrated Scope */}
+        {/* Big 2.5L+ Typographic Banner with Integrated Scope */}
         <div className="mb-16 p-8 sm:p-12 rounded-2xl bg-gradient-to-r from-[#121622] via-[#0d1017] to-[#121622] border border-white/15 relative overflow-hidden shadow-2xl">
           <div className="absolute inset-0 bg-precision-grid-dense opacity-20 pointer-events-none"></div>
           
@@ -52,10 +52,13 @@ export default function GlobalReach({ onOpenBooking }) {
                 // PAN-INDIA TRACK RECORD
               </span>
               <div className="text-6xl sm:text-7xl xl:text-8xl font-black font-mono-tech text-white tracking-tight">
-                5,000<span className="text-[#ff6b00]">+</span>
+                2.5L<span className="text-[#ff6b00]">+</span>
               </div>
               <div className="text-xl sm:text-2xl font-bold uppercase tracking-wider text-slate-200">
                 CNC MACHINES CALIBRATED
+              </div>
+              <div className="text-xs font-mono-tech text-[#ff6b00]">
+                2,50,000+ PRECISION MACHINE TOOLS
               </div>
             </div>
 

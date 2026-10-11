@@ -54,7 +54,7 @@ export default function AboutCompany({ onOpenBooking }) {
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight uppercase leading-tight">
             MACHINE TOOL EXPERTISE. <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff6b00] to-amber-300">
-              PROVEN ACROSS 5,000+ MACHINES.
+              PROVEN ACROSS 2.5L+ MACHINES.
             </span>
           </h2>
 
@@ -66,7 +66,7 @@ export default function AboutCompany({ onOpenBooking }) {
         {/* Big Number Feature Box & Engineering Heritage Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
-          {/* 5,000+ Hero Stat Card */}
+          {/* 2.5L+ Hero Stat Card */}
           <div className="lg:col-span-5 rounded-2xl bg-gradient-to-br from-[#121622] to-[#0a0d14] border border-white/15 p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden group shadow-2xl">
             <div className="absolute -right-12 -top-12 w-48 h-48 bg-[#ff6b00]/15 rounded-full blur-2xl group-hover:bg-[#ff6b00]/25 transition-all"></div>
             <div className="absolute inset-0 bg-precision-grid-dense opacity-20 pointer-events-none"></div>
@@ -84,15 +84,18 @@ export default function AboutCompany({ onOpenBooking }) {
               {/* Giant Animated Number */}
               <div className="pt-4">
                 <div className="text-6xl sm:text-7xl xl:text-8xl font-black font-mono-tech tracking-tight text-white flex items-baseline">
-                  5000<span className="text-[#ff6b00]">+</span>
+                  2.5L<span className="text-[#ff6b00]">+</span>
                 </div>
                 <div className="text-xl sm:text-2xl font-bold uppercase tracking-wider text-slate-200 mt-2">
                   CNC MACHINES CALIBRATED
                 </div>
+                <div className="text-xs font-mono-tech text-[#ff6b00] mt-1">
+                  2,50,000+ MACHINES TESTED & COMPENSATED
+                </div>
               </div>
 
               <p className="text-sm text-slate-400 font-light leading-relaxed pt-2">
-                From high-precision aerospace 5-axis machining centres to high-speed automotive turning lines, our engineers have calibrated thousands of machines across India and international industrial regions.
+                From high-precision aerospace 5-axis machining centres to high-speed automotive turning lines, our engineers have calibrated over 2.5 Lakh machines across India and international industrial regions.
               </p>
             </div>
 

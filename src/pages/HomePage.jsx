@@ -75,7 +75,7 @@ export default function HomePage({ onOpenBooking }) {
       {/* 1. Cinematic Hero Section with Live Calibration Simulator */}
       <Hero onOpenBooking={onOpenBooking} />
 
-      {/* 2. Executive Overview & 5,000+ Proven Track Record Gateway */}
+      {/* 2. Executive Overview & 2.5L+ Proven Track Record Gateway */}
       <section className="py-20 bg-[#090c12] border-t border-b border-white/[0.08] relative overflow-hidden">
         <div className="absolute inset-0 bg-precision-grid opacity-20 pointer-events-none"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-left">
@@ -106,17 +106,20 @@ export default function HomePage({ onOpenBooking }) {
               </div>
             </div>
 
-            {/* 5,000+ Big Number Card */}
+            {/* 2.5L+ Big Number Card */}
             <div className="lg:col-span-5 p-6 sm:p-8 rounded-2xl bg-[#0f131d] border border-white/15 relative shadow-xl">
               <span className="text-[10px] font-mono-tech text-[#ff6b00] uppercase tracking-widest block">
                 // PROVEN BENCHMARK
               </span>
               <div className="text-5xl sm:text-6xl font-black font-mono-tech text-white mt-2">
-                5,000<span className="text-[#ff6b00]">+</span>
+                2.5L<span className="text-[#ff6b00]">+</span>
               </div>
               <div className="text-lg font-bold uppercase tracking-wider text-slate-200 mt-1">
                 CNC MACHINES CALIBRATED
               </div>
+              <p className="text-xs text-[#ff6b00] font-mono-tech mt-0.5">
+                2,50,000+ MACHINES CERTIFIED & RESTORED
+              </p>
               <p className="text-xs text-slate-400 font-light mt-2 leading-relaxed">
                 Serving aerospace, defence, automotive, power, and heavy manufacturing leaders across India & internationally.
               </p>

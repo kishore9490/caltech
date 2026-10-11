@@ -5,8 +5,9 @@ export const COMPANY_DETAILS = {
   tagline: "CNC Machine Tool Calibration & Precision Metrology",
   shortDesc: "A machine maintenance and laser calibration service provider with experienced machine-tool engineering expertise.",
   stats: {
-    machinesCalibrated: "5,000+",
-    label: "CNC MACHINES CALIBRATED IN INDIA",
+    machinesCalibrated: "2.5L+",
+    fullNumber: "2,50,000+",
+    label: "2.5L+ CNC MACHINES CALIBRATED IN INDIA",
     description: "Range includes CNC Machining Centres, CNC Lathes, CNC SPMs, CNC Grinders, and advanced multi-axis machine tools."
   },
   emails: [
@@ -309,6 +310,130 @@ export const CUSTOMERS = [
   { name: "Starrag", subtitle: "Starrag High Precision", sector: "Machine Tool OEM" },
   { name: "Indo-MIM", subtitle: "Indo-MIM Complexity Simplified", sector: "Precision Metal Injection" },
   { name: "LMW", subtitle: "Lakshmi Machine Works", sector: "Textile & CNC Machines" },
-  { name: "Ace Micromatic", subtitle: "Ace Micromatic Group", sector: "CNC Machine Tools" },
+  { name: "Ace Micromatic", subtitle: "Ace Micromatic Group", sector: "CNC Machine Tool OEM" },
   { name: "Azad", subtitle: "Azad Engineering", sector: "Aerospace & Energy Components" }
 ];
+
+export const TEAM_MEMBERS = [
+  {
+    id: "tejas-m-n",
+    name: "TEJAS M N",
+    designation: "CEO",
+    department: "Executive Leadership",
+    category: "leadership",
+    photo: "assets/team/tejas_mn.jpg",
+    summary: "Visionary leadership, strategic direction, operations, client acquisition, and organizational growth.",
+    responsibilities: "Responsible for providing strategic leadership and direction to the organization, defining its vision, mission, and long-term objectives. Oversees overall business operations, financial performance, compliance, marketing strategy, brand positioning, customer acquisition, and organizational growth. Builds and maintains relationships with customers, investors, marketing partners, and other stakeholders. Leads senior management, ensures effective decision-making, promotes a strong organizational culture, and ensures that the organization operates efficiently, ethically, and in accordance with applicable laws and regulations.",
+    focusAreas: ["Strategic Direction", "Business Operations", "Client Relations", "Brand Positioning"],
+    badge: "Executive Leadership"
+  },
+  {
+    id: "hinchana-s",
+    name: "HINCHANA S",
+    designation: "DIRECTOR",
+    department: "Executive Leadership",
+    category: "leadership",
+    photo: "assets/team/hinchana_s.jpg",
+    summary: "Business operations oversight, strategic decision-making, regulatory compliance, and quality delivery.",
+    responsibilities: "The Director is responsible for overseeing the overall business operations, setting company goals, making strategic decisions, managing business growth, ensuring compliance with company policies and statutory regulations, monitoring financial performance, and guiding department heads to achieve organizational objectives. The Director also maintains client relationships and ensures the delivery of quality services and customer satisfaction.",
+    focusAreas: ["Operations Oversight", "Strategic Growth", "Statutory Compliance", "Quality Assurance"],
+    badge: "Board of Directors"
+  },
+  {
+    id: "akhil-kumara",
+    name: "AKHIL KUMARA",
+    designation: "TEAM LEADER",
+    department: "Calibration Engineering",
+    category: "engineering",
+    photo: "assets/team/akhil_kumara.jpg",
+    summary: "Supervising field calibration operations, job planning, team leadership, and quality assurance.",
+    responsibilities: "Responsible for leading and supervising the calibration team, planning daily activities, allocating jobs, coordinating with customers, and ensuring timely completion of calibration services. Maintains calibration quality, monitors team performance, ensures proper documentation, manages calibration equipment, and coordinates with internal departments to achieve customer satisfaction and operational efficiency.",
+    focusAreas: ["Field Team Supervision", "Job Scheduling", "Calibration Quality", "Equipment Management"],
+    badge: "Engineering Leadership"
+  },
+  {
+    id: "sanjay-h-m",
+    name: "SANJAY H M",
+    designation: "SENIOR APPLICATION ENGINEER",
+    department: "Calibration Engineering",
+    category: "engineering",
+    photo: "assets/team/sanjay_hm.jpg",
+    summary: "On-site laser calibration, machine diagnostics, kit handling, and ISO service reports.",
+    responsibilities: "Responsible for performing machine calibration activities at customer locations in accordance with approved procedures and quality standards. Ensures accurate calibration, proper handling of instruments and calibration kits, maintains calibration records, prepares service reports, identifies technical issues, and coordinates with the team leader to ensure timely service completion and customer satisfaction.",
+    focusAreas: ["On-Site Laser Calibration", "Precision Metrology", "Service Reports", "Technical Diagnostics"],
+    badge: "Field Metrology Specialist"
+  },
+  {
+    id: "sunil-t-n",
+    name: "SUNIL T N",
+    designation: "SENIOR APPLICATION ENGINEER",
+    department: "Calibration Engineering",
+    category: "engineering",
+    photo: "assets/team/sunil_tn.jpg",
+    summary: "Machine tool calibration, interferometer setup, error compensation, and quality compliance.",
+    responsibilities: "Responsible for performing machine calibration activities at customer locations in accordance with approved procedures and quality standards. Ensures accurate calibration, proper handling of instruments and calibration kits, maintains calibration records, prepares service reports, identifies technical issues, and coordinates with the team leader to ensure timely service completion and customer satisfaction.",
+    focusAreas: ["Laser Interferometry", "Error Compensation", "Field Verification", "Customer Satisfaction"],
+    badge: "Field Metrology Specialist"
+  },
+  {
+    id: "aishwarya-p-b",
+    name: "AISHWARYA P B",
+    designation: "ACCOUNTANT",
+    department: "Finance & Accounts",
+    category: "accounts",
+    photo: "assets/team/aishwarya_pb.jpg",
+    summary: "Financial records, billing & invoicing, GST & statutory tax compliance, and vendor reconciliation.",
+    responsibilities: "Responsible for maintaining financial records, preparing invoices, processing payments, monitoring accounts receivable and payable, and reconciling bank statements. Ensures timely GST and tax compliance, maintains expense records, follows up on outstanding payments, prepares financial reports, and coordinates with customers, vendors, and internal departments to ensure accurate financial management.",
+    focusAreas: ["Financial Accounting", "GST & Statutory Compliance", "Invoicing & Billing", "Bank Reconciliation"],
+    badge: "Financial Operations"
+  },
+  {
+    id: "ashritha-t",
+    name: "ASHRITHA T",
+    designation: "ACCOUNTANT",
+    department: "Finance & Coordination",
+    category: "accounts",
+    photo: "assets/team/ashritha_t.jpg",
+    summary: "Calibration reporting, customer communications, service updates, and documentation flow.",
+    responsibilities: "Responsible for preparing calibration reports and attending customer calls to discuss calibration requirements, report details, service updates, and customer queries. Coordinates with the relevant internal teams to collect accurate calibration data, ensures reports are completed and shared with customers on time, maintains proper documentation, and supports effective communication between customers and the organization.",
+    focusAreas: ["Calibration Reports", "Customer Coordination", "Documentation Control", "Service Updates"],
+    badge: "Client Coordination & Reports"
+  },
+  {
+    id: "chandana-h",
+    name: "CHANDANA H",
+    designation: "ACCOUNT ASSISTANT",
+    department: "Finance & Accounts",
+    category: "accounts",
+    photo: "assets/team/chandana_h.jpg",
+    summary: "Daily bookkeeping, invoice preparation, data entry, bill filing, and accounting support.",
+    responsibilities: "Responsible for assisting the accounts team with daily accounting activities, invoice preparation, data entry, maintaining financial records, and filing bills and payment documents. Supports the processing of receipts and payments, maintains expense records, assists with bank reconciliation, and learns GST and other accounting procedures under the guidance of senior staff.",
+    focusAreas: ["Daily Bookkeeping", "Invoice Preparation", "Data Entry", "Records Management"],
+    badge: "Accounts Assistance"
+  },
+  {
+    id: "shreyas-r",
+    name: "SHREYAS R",
+    designation: "TRAINEE",
+    department: "Technical Trainees",
+    category: "trainee",
+    photo: "assets/team/shreyas_r.jpg",
+    summary: "Assisting calibration engineers, on-site service support, instrument handling, and field documentation.",
+    responsibilities: "Responsible for assisting calibration engineers in machine calibration activities, learning calibration procedures, handling instruments and calibration kits under supervision, maintaining service records, and preparing calibration reports. Supports on-site calibration work, follows safety and quality standards, identifies technical issues, and develops practical knowledge of calibration equipment and processes under the guidance of senior engineers.",
+    focusAreas: ["Assisting Calibration", "Equipment Handling", "Service Records", "Quality & Safety Standards"],
+    badge: "Engineering Trainee"
+  },
+  {
+    id: "srujan-gowda",
+    name: "SRUJAN GOWDA",
+    designation: "TRAINEE",
+    department: "Technical Trainees",
+    category: "trainee",
+    photo: "assets/team/srujan_gowda.jpg",
+    summary: "Assisting calibration engineers, on-site service support, instrument handling, and field documentation.",
+    responsibilities: "Responsible for assisting calibration engineers in machine calibration activities, learning calibration procedures, handling instruments and calibration kits under supervision, maintaining service records, and preparing calibration reports. Supports on-site calibration work, follows safety and quality standards, identifies technical issues, and develops practical knowledge of calibration equipment and processes under the guidance of senior engineers.",
+    focusAreas: ["Assisting Calibration", "Equipment Handling", "Service Records", "Quality & Safety Standards"],
+    badge: "Engineering Trainee"
+  }
+];
+

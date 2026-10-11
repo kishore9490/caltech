@@ -257,7 +257,7 @@ export default function Hero({ onOpenBooking }) {
         <div className="flex flex-wrap items-center gap-3 mb-6 animate-fadeIn">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono-tech text-slate-300 backdrop-blur-md">
             <span className="w-2 h-2 rounded-full bg-[#ff6b00] animate-pulse"></span>
-            <span className="text-[#ff6b00] font-semibold">5,000+ CNC MACHINES CALIBRATED</span>
+            <span className="text-[#ff6b00] font-semibold">2.5L+ CNC MACHINES CALIBRATED</span>
             <span className="text-white/20">|</span>
             <span className="text-slate-400">PAN INDIA & GLOBAL SERVICE</span>
           </div>
@@ -297,7 +297,7 @@ export default function Hero({ onOpenBooking }) {
             <div className="grid grid-cols-3 gap-3 p-3.5 rounded-2xl bg-[#0e1118]/80 border border-white/10 backdrop-blur-md">
               <div className="space-y-0.5 border-r border-white/10 pr-2">
                 <span className="text-[10px] font-mono-tech text-slate-400 block uppercase">Calibrated Machines</span>
-                <span className="text-xl sm:text-2xl font-bold font-mono-tech text-white">5,000+</span>
+                <span className="text-xl sm:text-2xl font-bold font-mono-tech text-white">2.5L+</span>
                 <span className="text-[9px] text-slate-500 block">VMCs, Lathes, SPMs</span>
               </div>
               <div className="space-y-0.5 border-r border-white/10 pr-2 pl-1">
@@ -392,7 +392,7 @@ export default function Hero({ onOpenBooking }) {
                 
                 {/* Authentic 3D Factory Render Asset */}
                 <img 
-                  src="/assets/cal-hero-render.jpg" 
+                  src={`${import.meta.env.BASE_URL}assets/cal-hero-render.jpg`} 
                   alt="CAL TECHNOLOGIES Cinematic CNC Machine & Robotics Metrology Environment"
                   className={`w-full h-full object-cover transition-all duration-700 ${
                     scanStep === 5 ? 'brightness-110 contrast-105' : 'brightness-95'

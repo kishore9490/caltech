@@ -26,7 +26,7 @@ export default function Footer() {
 
 
             <p className="text-xs text-slate-400 leading-relaxed font-light max-w-sm">
-              A machine maintenance and laser calibration service provider with experienced machine-tool engineering expertise. Serving over 5,000+ CNC machines across India and globally.
+              A machine maintenance and laser calibration service provider with experienced machine-tool engineering expertise. Serving over 2.5L+ CNC machines across India and globally.
             </p>
 
             <div className="flex items-center gap-2 pt-2">

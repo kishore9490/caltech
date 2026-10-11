@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/metrologyData';
 import AboutCompany from '../components/AboutCompany';
+import TeamShowcase from '../components/TeamShowcase';
 
 export default function AboutPage({ onOpenBooking }) {
   const principles = [
@@ -61,7 +62,7 @@ export default function AboutPage({ onOpenBooking }) {
           </h1>
 
           <p className="mt-4 text-base sm:text-xl text-slate-300 font-light max-w-3xl leading-relaxed">
-            CAL TECHNOLOGIES is a dedicated machine maintenance and laser calibration service provider headquartered in Bangalore, with over 5,000+ CNC machines calibrated across India and foreign facilities.
+            CAL TECHNOLOGIES is a dedicated machine maintenance and laser calibration service provider headquartered in Bangalore, with over 2.5L+ CNC machines calibrated across India and foreign facilities.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -75,14 +76,17 @@ export default function AboutPage({ onOpenBooking }) {
 
             <div className="flex items-center gap-2 text-xs font-mono-tech text-slate-400 bg-white/5 px-4 py-3 rounded-xl border border-white/10">
               <Award className="w-4 h-4 text-[#ff6b00]" />
-              <span>5,000+ MACHINES CALIBRATED IN INDIA</span>
+              <span>2.5L+ MACHINES CALIBRATED IN INDIA</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Core About Company Component with 5000+ Stat */}
+      {/* Core About Company Component with 2.5L+ Stat */}
       <AboutCompany onOpenBooking={onOpenBooking} />
+
+      {/* Dedicated Executive Leadership & Engineering Team Showcase */}
+      <TeamShowcase onOpenBooking={onOpenBooking} />
 
       {/* Engineering Principles & Core Philosophy */}
       <section className="py-20 bg-[#080a0f] border-t border-b border-white/10 relative">

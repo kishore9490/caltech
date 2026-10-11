@@ -40,7 +40,7 @@ export default function CustomersPage({ onOpenBooking }) {
 
             <div className="flex items-center gap-2 text-xs font-mono-tech text-slate-400 bg-white/5 px-4 py-3 rounded-xl border border-white/10">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>5,000+ CNC MACHINES SERVED ACROSS INDUSTRY SECTORS</span>
+              <span>2.5L+ CNC MACHINES SERVED ACROSS INDUSTRY SECTORS</span>
             </div>
           </div>
         </div>

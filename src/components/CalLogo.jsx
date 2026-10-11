@@ -10,7 +10,7 @@ export default function CalLogo({ className = "h-11", showText = true, textClass
       {/* Exact Official Logo Image Badge */}
       <div className="relative flex items-center justify-center h-full aspect-square rounded-xl bg-white p-1 overflow-hidden border border-white/30 shadow-lg shadow-black/40 group-hover:border-[#ff6b00] transition-all shrink-0">
         <img 
-          src="/assets/cal-official-logo.jpg" 
+          src={`${import.meta.env.BASE_URL}assets/cal-official-logo.jpg`} 
           alt="CAL TECHNOLOGIES Official Logo" 
           className="h-full w-full object-contain"
         />
