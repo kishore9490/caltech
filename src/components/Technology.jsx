@@ -9,18 +9,32 @@ import {
   Crosshair, 
   Zap, 
   Compass, 
-  ChevronRight,
-  ShieldAlert,
-  Sliders
+  ChevronRight, 
+  ShieldAlert, 
+  Sliders,
+  Camera,
+  Eye,
+  Sparkles
 } from 'lucide-react';
 import { TECHNOLOGIES } from '../data/metrologyData';
 
 export default function Technology({ onOpenBooking }) {
   const [selectedTech, setSelectedTech] = useState(0);
+  const [activeImageIdx, setActiveImageIdx] = useState(0);
+  const [viewMode, setViewMode] = useState('hardware'); // 'hardware' | 'simulator'
   const [ballbarDefect, setBallbarDefect] = useState('squareness');
   const [rotaryAngle, setRotaryAngle] = useState(90);
 
   const currentTech = TECHNOLOGIES[selectedTech];
+
+  const handleSelectTech = (idx) => {
+    setSelectedTech(idx);
+    setActiveImageIdx(0);
+  };
+
+  const currentGallery = currentTech.gallery || [
+    { src: currentTech.image, caption: currentTech.name }
+  ];
 
   return (
     <section id="technology" className="py-24 bg-[#07080c] relative overflow-hidden">
@@ -34,7 +48,7 @@ export default function Technology({ onOpenBooking }) {
         <div className="text-left max-w-3xl mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono-tech text-[#ff6b00] mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-[#ff6b00]"></span>
-            <span>FLAGSHIP METROLOGY INSTRUMENTS</span>
+            <span>FLAGSHIP METROLOGY INSTRUMENTATION</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight uppercase leading-tight">
@@ -49,15 +63,15 @@ export default function Technology({ onOpenBooking }) {
           </p>
         </div>
 
-        {/* 3 Tech Tabs Navigation */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-10">
+        {/* 3 Tech Tabs Navigation with Tool Images */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
           {TECHNOLOGIES.map((tech, idx) => {
             const isSelected = selectedTech === idx;
             return (
               <button
                 key={tech.id}
-                onClick={() => setSelectedTech(idx)}
-                className={`p-5 rounded-2xl border text-left transition-all duration-300 relative overflow-hidden cursor-pointer ${
+                onClick={() => handleSelectTech(idx)}
+                className={`p-4 sm:p-5 rounded-2xl border text-left transition-all duration-300 relative overflow-hidden cursor-pointer group ${
                   isSelected
                     ? 'bg-gradient-to-b from-[#191e2b] to-[#0e121a] border-[#ff6b00] shadow-xl shadow-[#ff6b00]/15'
                     : 'bg-[#0a0d14]/80 border-white/10 hover:border-white/20 hover:bg-[#121622]'
@@ -68,17 +82,33 @@ export default function Technology({ onOpenBooking }) {
                     0{idx + 1} // INSTRUMENT
                   </span>
                   {isSelected && (
-                    <span className="w-2 h-2 rounded-full bg-[#ff6b00] animate-ping"></span>
+                    <span className="flex items-center gap-1 text-[10px] font-mono-tech text-[#ff6b00] bg-[#ff6b00]/10 px-2 py-0.5 rounded-full border border-[#ff6b00]/30">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#ff6b00] animate-ping"></span>
+                      ACTIVE
+                    </span>
                   )}
                 </div>
 
-                <h3 className="text-lg font-bold text-white mb-1">
-                  {tech.name}
-                </h3>
+                <div className="flex items-center gap-3.5">
+                  {/* Tool Image Thumbnail */}
+                  <div className="w-16 h-16 rounded-xl overflow-hidden bg-black/60 border border-white/15 shrink-0 group-hover:border-[#ff6b00]/50 transition-colors">
+                    <img 
+                      src={`${import.meta.env.BASE_URL}${tech.image}`}
+                      alt={tech.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
 
-                <p className="text-xs font-mono-tech text-slate-400">
-                  {tech.category}
-                </p>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-[#ffaa00] transition-colors leading-tight">
+                      {tech.name}
+                    </h3>
+
+                    <p className="text-xs font-mono-tech text-slate-400 mt-1">
+                      {tech.category}
+                    </p>
+                  </div>
+                </div>
               </button>
             );
           })}
@@ -148,196 +178,308 @@ export default function Technology({ onOpenBooking }) {
 
             </div>
 
-            {/* Right: Dedicated Interactive Metrology Visualizer per Instrument */}
-            <div className="lg:col-span-6">
+            {/* Right: Hardware Showcase & Interactive Simulator */}
+            <div className="lg:col-span-6 space-y-4">
               
-              {/* 01: Renishaw XL-80 Interactive Laser Raypath Visualizer */}
-              {selectedTech === 0 && (
-                <div className="rounded-xl bg-[#06080d] border border-white/10 p-6 space-y-4">
-                  <div className="flex items-center justify-between text-xs font-mono-tech text-slate-400 pb-3 border-b border-white/10">
-                    <span className="text-white font-bold">XL-80 LASER INTERFEROMETRY RAYPATH</span>
-                    <span className="text-[#ff6b00]">633nm HeNe OPTICS</span>
+              {/* View Switcher Tabs (Hardware vs Simulator) */}
+              <div className="flex items-center justify-between p-1.5 rounded-xl bg-black/60 border border-white/10">
+                <button
+                  onClick={() => setViewMode('hardware')}
+                  className={`flex-1 py-2 px-3 rounded-lg text-xs font-mono-tech uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                    viewMode === 'hardware'
+                      ? 'bg-[#ff6b00] text-black font-bold shadow-md shadow-[#ff6b00]/20'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  <Camera className="w-3.5 h-3.5" />
+                  <span>Official Tool Views</span>
+                </button>
+
+                <button
+                  onClick={() => setViewMode('simulator')}
+                  className={`flex-1 py-2 px-3 rounded-lg text-xs font-mono-tech uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                    viewMode === 'simulator'
+                      ? 'bg-[#ff6b00] text-black font-bold shadow-md shadow-[#ff6b00]/20'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  <Zap className="w-3.5 h-3.5" />
+                  <span>Kinematic Simulator</span>
+                </button>
+              </div>
+
+              {/* 1. Official Tool Hardware Presentation */}
+              {viewMode === 'hardware' && (
+                <div className="rounded-2xl bg-[#06080d] border border-white/15 p-4 sm:p-6 space-y-4 shadow-xl">
+                  {/* Active Tool Main Photo Frame */}
+                  <div className="relative aspect-[16/11] rounded-xl overflow-hidden bg-black border border-white/10 group">
+                    <img 
+                      src={`${import.meta.env.BASE_URL}${currentGallery[activeImageIdx]?.src || currentTech.image}`}
+                      alt={currentGallery[activeImageIdx]?.caption || currentTech.name}
+                      className="w-full h-full object-cover filter contrast-[1.03] group-hover:scale-105 transition-transform duration-500"
+                    />
+
+                    {/* Gradient & Reticle Overlays */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none"></div>
+                    <div className="absolute inset-0 bg-precision-grid-dense opacity-20 pointer-events-none"></div>
+
+                    {/* Reticle Corner Marks */}
+                    <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-md border border-white/15 text-[10px] font-mono-tech text-white">
+                      <Crosshair className="w-3 h-3 text-[#ff6b00]" />
+                      <span>{currentTech.name}</span>
+                    </div>
+
+                    <div className="absolute top-3 right-3 px-2 py-0.5 rounded bg-[#ff6b00]/20 border border-[#ff6b00]/40 text-[9px] font-mono-tech text-[#ff6b00] font-bold">
+                      VERIFIED RENISHAW MODEL
+                    </div>
+
+                    {/* Bottom Caption Pill */}
+                    <div className="absolute bottom-3 left-3 right-3 p-2.5 rounded-lg bg-black/80 backdrop-blur-md border border-white/10 text-left">
+                      <span className="text-[10px] font-mono-tech text-[#ff6b00] uppercase block">
+                        // SPECIFICATION VIEW 0{activeImageIdx + 1}
+                      </span>
+                      <p className="text-xs text-slate-200 font-medium">
+                        {currentGallery[activeImageIdx]?.caption || currentTech.headline}
+                      </p>
+                    </div>
                   </div>
 
-                  {/* Laser Diagram Graphic */}
-                  <div className="relative h-56 rounded-lg bg-black border border-white/10 overflow-hidden flex items-center justify-center p-4 bg-precision-grid-dense">
-                    
-                    {/* Laser Head Unit (XL-80) on Left */}
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 w-20 h-16 rounded bg-[#1f2533] border border-white/20 flex flex-col items-center justify-center text-center shadow-lg">
-                      <span className="text-[9px] font-mono-tech text-white font-bold">XL-80</span>
-                      <span className="text-[7px] font-mono-tech text-[#ff6b00]">LASER HEAD</span>
-                      <div className="absolute -right-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-red-500 shadow-[0_0_8px_#ff0000]"></div>
+                  {/* Thumbnail Selector Bar */}
+                  {currentGallery.length > 1 && (
+                    <div className="space-y-1.5 text-left">
+                      <span className="text-[10px] font-mono-tech text-slate-400 uppercase tracking-widest block">
+                        SELECT INSTRUMENT VIEW:
+                      </span>
+                      <div className="grid grid-cols-4 sm:grid-cols-5 gap-2">
+                        {currentGallery.map((img, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => setActiveImageIdx(idx)}
+                            className={`relative aspect-[4/3] rounded-lg overflow-hidden border transition-all cursor-pointer ${
+                              activeImageIdx === idx
+                                ? 'border-[#ff6b00] ring-2 ring-[#ff6b00]/30 scale-102'
+                                : 'border-white/10 hover:border-white/30 opacity-70 hover:opacity-100'
+                            }`}
+                          >
+                            <img 
+                              src={`${import.meta.env.BASE_URL}${img.src}`}
+                              alt={img.caption}
+                              className="w-full h-full object-cover"
+                            />
+                            {activeImageIdx === idx && (
+                              <div className="absolute inset-0 bg-[#ff6b00]/10 pointer-events-none"></div>
+                            )}
+                          </button>
+                        ))}
+                      </div>
                     </div>
+                  )}
 
-                    {/* Laser Optical Beam */}
-                    <div className="absolute left-24 right-20 top-1/2 -translate-y-1/2 h-[2px] bg-gradient-to-r from-red-500 via-[#ff6b00] to-red-500 laser-beam-horizontal">
-                      <span className="absolute -top-3 left-1/3 text-[8px] font-mono-tech text-[#ff6b00]">LINEAR REFLECTOR BEAM</span>
-                    </div>
-
-                    {/* Angular / Linear Reflector on Right */}
-                    <div className="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded bg-[#151922] border border-[#ff6b00]/60 flex flex-col items-center justify-center text-center shadow-lg">
-                      <span className="text-[8px] font-mono-tech text-slate-200">OPTIC</span>
-                      <span className="text-[7px] font-mono-tech text-emerald-400">RETRO-REFLECTOR</span>
-                    </div>
-
-                    {/* Dynamic Distance Counter */}
-                    <div className="absolute bottom-3 left-4 text-[10px] font-mono-tech text-slate-400 bg-black/80 px-2 py-1 rounded border border-white/10">
-                      DISTANCE: 0.000 to 80.000 m | STABILITY: ±0.05 ppm
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-2 text-[11px] font-mono-tech">
-                    <div className="p-2.5 rounded bg-white/[0.02] border border-white/5 text-slate-300">
-                      <span className="text-slate-500 block">OPTICS CONFIG</span>
-                      <span>Linear, Angular Pitch/Yaw, Straightness</span>
-                    </div>
-                    <div className="p-2.5 rounded bg-white/[0.02] border border-white/5 text-slate-300">
-                      <span className="text-slate-500 block">SENSOR SYNC</span>
-                      <span>XC-80 Environmental Sensor (Temp/Press)</span>
-                    </div>
+                  {/* Hardware Certification Note */}
+                  <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5 flex items-center justify-between text-xs font-mono-tech text-slate-400 text-left">
+                    <span className="flex items-center gap-1.5 text-slate-300">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#ff6b00]" />
+                      <span>Traceable to CIPM MRA & NPL Standards</span>
+                    </span>
+                    <span className="text-[#ff6b00] font-semibold text-[11px]">
+                      ISO 230-2 COMPLIANT
+                    </span>
                   </div>
                 </div>
               )}
 
-              {/* 02: Renishaw QC20-W Ballbar Circular Interpolation Simulator */}
-              {selectedTech === 1 && (
-                <div className="rounded-xl bg-[#06080d] border border-white/10 p-6 space-y-4">
-                  <div className="flex items-center justify-between text-xs font-mono-tech text-slate-400 pb-3 border-b border-white/10">
-                    <span className="text-white font-bold">CIRCULARITY INTERPOLATION POLAR PLOT</span>
-                    <span className="text-[#ff6b00]">RADIUS: 50mm MIN</span>
-                  </div>
+              {/* 2. Interactive Kinematic Simulator */}
+              {viewMode === 'simulator' && (
+                <div>
+                  {/* 01: Renishaw XL-80 Interactive Laser Raypath Visualizer */}
+                  {selectedTech === 0 && (
+                    <div className="rounded-xl bg-[#06080d] border border-white/10 p-6 space-y-4 text-left">
+                      <div className="flex items-center justify-between text-xs font-mono-tech text-slate-400 pb-3 border-b border-white/10">
+                        <span className="text-white font-bold">XL-80 LASER INTERFEROMETRY RAYPATH</span>
+                        <span className="text-[#ff6b00]">633nm HeNe OPTICS</span>
+                      </div>
 
-                  {/* Interactive Polar Circularity Canvas / Diagram */}
-                  <div className="relative h-60 rounded-lg bg-black border border-white/10 flex items-center justify-center p-4">
-                    {/* Polar Coordinate Rings */}
-                    <div className="w-48 h-48 rounded-full border border-white/15 flex items-center justify-center relative">
-                      <div className="w-36 h-36 rounded-full border border-white/10 flex items-center justify-center">
-                        <div className="w-24 h-24 rounded-full border border-white/5 flex items-center justify-center">
-                          <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
+                      {/* Laser Diagram Graphic */}
+                      <div className="relative h-56 rounded-lg bg-black border border-white/10 overflow-hidden flex items-center justify-center p-4 bg-precision-grid-dense">
+                        
+                        {/* Laser Head Unit (XL-80) on Left */}
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 w-20 h-16 rounded bg-[#1f2533] border border-white/20 flex flex-col items-center justify-center text-center shadow-lg">
+                          <span className="text-[9px] font-mono-tech text-white font-bold">XL-80</span>
+                          <span className="text-[7px] font-mono-tech text-[#ff6b00]">LASER HEAD</span>
+                          <div className="absolute -right-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-red-500 shadow-[0_0_8px_#ff0000]"></div>
+                        </div>
+
+                        {/* Laser Optical Beam */}
+                        <div className="absolute left-24 right-20 top-1/2 -translate-y-1/2 h-[2px] bg-gradient-to-r from-red-500 via-[#ff6b00] to-red-500 laser-beam-horizontal">
+                          <span className="absolute -top-3 left-1/3 text-[8px] font-mono-tech text-[#ff6b00]">LINEAR REFLECTOR BEAM</span>
+                        </div>
+
+                        {/* Angular / Linear Reflector on Right */}
+                        <div className="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded bg-[#151922] border border-[#ff6b00]/60 flex flex-col items-center justify-center text-center shadow-lg">
+                          <span className="text-[8px] font-mono-tech text-slate-200">OPTIC</span>
+                          <span className="text-[7px] font-mono-tech text-emerald-400">RETRO-REFLECTOR</span>
+                        </div>
+
+                        {/* Dynamic Distance Counter */}
+                        <div className="absolute bottom-3 left-4 text-[10px] font-mono-tech text-slate-400 bg-black/80 px-2 py-1 rounded border border-white/10">
+                          DISTANCE: 0.000 to 80.000 m | STABILITY: ±0.05 ppm
                         </div>
                       </div>
 
-                      {/* Crosshair Axes */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-full h-[1px] bg-white/15"></div>
-                      </div>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="h-full w-[1px] bg-white/15"></div>
-                      </div>
-
-                      {/* Ideal Circle (White dashed) */}
-                      <div className="absolute w-36 h-36 rounded-full border border-dashed border-white/30"></div>
-
-                      {/* Distorted Ballbar Trace based on defect */}
-                      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 200">
-                        {ballbarDefect === 'squareness' && (
-                          <ellipse cx="100" cy="100" rx="72" ry="58" transform="rotate(-45 100 100)" fill="none" stroke="#ff6b00" strokeWidth="2.5" className="drop-shadow-[0_0_8px_#ff6b00]" />
-                        )}
-                        {ballbarDefect === 'backlash' && (
-                          <path d="M 100 35 A 65 65 0 0 1 165 100 L 160 102 A 65 65 0 0 1 100 165 L 98 160 A 65 65 0 0 1 35 100 L 40 98 A 65 65 0 0 1 100 35" fill="none" stroke="#ff6b00" strokeWidth="2.5" className="drop-shadow-[0_0_8px_#ff6b00]" />
-                        )}
-                        {ballbarDefect === 'calibrated' && (
-                          <circle cx="100" cy="100" r="65" fill="none" stroke="#10b981" strokeWidth="2.5" className="drop-shadow-[0_0_8px_#10b981]" />
-                        )}
-                      </svg>
-                    </div>
-
-                    <div className="absolute top-3 left-3 text-[9px] font-mono-tech text-slate-400 bg-black/80 px-2 py-1 rounded border border-white/10">
-                      VMC & TURNING CENTRE TESTING
-                    </div>
-                  </div>
-
-                  {/* Defect Diagnostics Switcher */}
-                  <div className="flex items-center justify-between gap-2 pt-1">
-                    <button
-                      onClick={() => setBallbarDefect('squareness')}
-                      className={`flex-1 py-1.5 rounded text-[10px] font-mono-tech border cursor-pointer ${
-                        ballbarDefect === 'squareness' ? 'bg-[#ff6b00] text-black font-bold' : 'bg-white/5 border-white/10 text-slate-400'
-                      }`}
-                    >
-                      Squareness Error
-                    </button>
-                    <button
-                      onClick={() => setBallbarDefect('backlash')}
-                      className={`flex-1 py-1.5 rounded text-[10px] font-mono-tech border cursor-pointer ${
-                        ballbarDefect === 'backlash' ? 'bg-[#ff6b00] text-black font-bold' : 'bg-white/5 border-white/10 text-slate-400'
-                      }`}
-                    >
-                      Backlash Spike
-                    </button>
-                    <button
-                      onClick={() => setBallbarDefect('calibrated')}
-                      className={`flex-1 py-1.5 rounded text-[10px] font-mono-tech border cursor-pointer ${
-                        ballbarDefect === 'calibrated' ? 'bg-emerald-500 text-black font-bold' : 'bg-white/5 border-white/10 text-slate-400'
-                      }`}
-                    >
-                      Calibrated True Arc
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* 03: Renishaw XR20-W Rotary Axis Calibrator Simulator */}
-              {selectedTech === 2 && (
-                <div className="rounded-xl bg-[#06080d] border border-white/10 p-6 space-y-4">
-                  <div className="flex items-center justify-between text-xs font-mono-tech text-slate-400 pb-3 border-b border-white/10">
-                    <span className="text-white font-bold">XR20-W ROTARY AXIS CALIBRATOR</span>
-                    <span className="text-[#ff6b00]">±1 ARCSECOND PRECISION</span>
-                  </div>
-
-                  {/* Rotary Axis Angular Visualizer */}
-                  <div className="relative h-60 rounded-lg bg-black border border-white/10 flex items-center justify-center p-4">
-                    
-                    {/* Rotary Table Representation */}
-                    <div className="relative w-44 h-44 rounded-full border-2 border-[#ff6b00] flex items-center justify-center bg-gradient-to-br from-[#1b2230] to-[#090b10] shadow-[0_0_25px_rgba(255,107,0,0.2)]">
-                      
-                      {/* Angular Tick Marks */}
-                      {[0, 45, 90, 135, 180, 225, 270, 315].map((ang) => (
-                        <div
-                          key={ang}
-                          className="absolute w-full h-[1px] bg-white/20"
-                          style={{ transform: `rotate(${ang}deg)` }}
-                        ></div>
-                      ))}
-
-                      {/* Motorized Indexing Indicator */}
-                      <div 
-                        className="absolute w-28 h-28 rounded-full border border-dashed border-amber-400 flex items-center justify-center transition-transform duration-700"
-                        style={{ transform: `rotate(${rotaryAngle}deg)` }}
-                      >
-                        <div className="w-3 h-3 rounded-full bg-[#ff6b00] -translate-y-14 shadow-[0_0_10px_#ff6b00]"></div>
-                      </div>
-
-                      {/* Center XR20-W Core */}
-                      <div className="w-16 h-16 rounded-full bg-[#0d1017] border border-white/30 flex flex-col items-center justify-center text-center z-10">
-                        <span className="text-[8px] font-mono-tech text-[#ff6b00] font-bold">XR20-W</span>
-                        <span className="text-[7px] font-mono-tech text-slate-300">{rotaryAngle}°</span>
+                      <div className="grid grid-cols-2 gap-2 text-[11px] font-mono-tech">
+                        <div className="p-2.5 rounded bg-white/[0.02] border border-white/5 text-slate-300">
+                          <span className="text-slate-500 block">OPTICS CONFIG</span>
+                          <span>Linear, Angular Pitch/Yaw, Straightness</span>
+                        </div>
+                        <div className="p-2.5 rounded bg-white/[0.02] border border-white/5 text-slate-300">
+                          <span className="text-slate-500 block">SENSOR SYNC</span>
+                          <span>XC-80 Environmental Sensor (Temp/Press)</span>
+                        </div>
                       </div>
                     </div>
+                  )}
 
-                    <div className="absolute top-3 left-3 text-[9px] font-mono-tech text-slate-400 bg-black/80 px-2 py-1 rounded border border-white/10">
-                      VERTICAL & HORIZONTAL MOUNTING
+                  {/* 02: Renishaw QC20-W Ballbar Circular Interpolation Simulator */}
+                  {selectedTech === 1 && (
+                    <div className="rounded-xl bg-[#06080d] border border-white/10 p-6 space-y-4 text-left">
+                      <div className="flex items-center justify-between text-xs font-mono-tech text-slate-400 pb-3 border-b border-white/10">
+                        <span className="text-white font-bold">CIRCULARITY INTERPOLATION POLAR PLOT</span>
+                        <span className="text-[#ff6b00]">RADIUS: 50mm MIN</span>
+                      </div>
+
+                      {/* Interactive Polar Circularity Canvas / Diagram */}
+                      <div className="relative h-60 rounded-lg bg-black border border-white/10 flex items-center justify-center p-4">
+                        {/* Polar Coordinate Rings */}
+                        <div className="w-48 h-48 rounded-full border border-white/15 flex items-center justify-center relative">
+                          <div className="w-36 h-36 rounded-full border border-white/10 flex items-center justify-center">
+                            <div className="w-24 h-24 rounded-full border border-white/5 flex items-center justify-center">
+                              <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
+                            </div>
+                          </div>
+
+                          {/* Crosshair Axes */}
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-full h-[1px] bg-white/15"></div>
+                          </div>
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="h-full w-[1px] bg-white/15"></div>
+                          </div>
+
+                          {/* Ideal Circle (White dashed) */}
+                          <div className="absolute w-36 h-36 rounded-full border border-dashed border-white/30"></div>
+
+                          {/* Distorted Ballbar Trace based on defect */}
+                          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 200">
+                            {ballbarDefect === 'squareness' && (
+                              <ellipse cx="100" cy="100" rx="72" ry="58" transform="rotate(-45 100 100)" fill="none" stroke="#ff6b00" strokeWidth="2.5" className="drop-shadow-[0_0_8px_#ff6b00]" />
+                            )}
+                            {ballbarDefect === 'backlash' && (
+                              <path d="M 100 35 A 65 65 0 0 1 165 100 L 160 102 A 65 65 0 0 1 100 165 L 98 160 A 65 65 0 0 1 35 100 L 40 98 A 65 65 0 0 1 100 35" fill="none" stroke="#ff6b00" strokeWidth="2.5" className="drop-shadow-[0_0_8px_#ff6b00]" />
+                            )}
+                            {ballbarDefect === 'calibrated' && (
+                              <circle cx="100" cy="100" r="65" fill="none" stroke="#10b981" strokeWidth="2.5" className="drop-shadow-[0_0_8px_#10b981]" />
+                            )}
+                          </svg>
+                        </div>
+
+                        <div className="absolute top-3 left-3 text-[9px] font-mono-tech text-slate-400 bg-black/80 px-2 py-1 rounded border border-white/10">
+                          VMC & TURNING CENTRE TESTING
+                        </div>
+                      </div>
+
+                      {/* Defect Diagnostics Switcher */}
+                      <div className="flex items-center justify-between gap-2 pt-1">
+                        <button
+                          onClick={() => setBallbarDefect('squareness')}
+                          className={`flex-1 py-1.5 rounded text-[10px] font-mono-tech border cursor-pointer ${
+                            ballbarDefect === 'squareness' ? 'bg-[#ff6b00] text-black font-bold' : 'bg-white/5 border-white/10 text-slate-400'
+                          }`}
+                        >
+                          Squareness Error
+                        </button>
+                        <button
+                          onClick={() => setBallbarDefect('backlash')}
+                          className={`flex-1 py-1.5 rounded text-[10px] font-mono-tech border cursor-pointer ${
+                            ballbarDefect === 'backlash' ? 'bg-[#ff6b00] text-black font-bold' : 'bg-white/5 border-white/10 text-slate-400'
+                          }`}
+                        >
+                          Backlash Spike
+                        </button>
+                        <button
+                          onClick={() => setBallbarDefect('calibrated')}
+                          className={`flex-1 py-1.5 rounded text-[10px] font-mono-tech border cursor-pointer ${
+                            ballbarDefect === 'calibrated' ? 'bg-emerald-500 text-black font-bold' : 'bg-white/5 border-white/10 text-slate-400'
+                          }`}
+                        >
+                          Calibrated True Arc
+                        </button>
+                      </div>
                     </div>
-                  </div>
+                  )}
 
-                  {/* Rotary Angle Buttons */}
-                  <div className="flex items-center justify-between gap-2 pt-1">
-                    {[0, 45, 90, 180, 270, 360].map((deg) => (
-                      <button
-                        key={deg}
-                        onClick={() => setRotaryAngle(deg)}
-                        className={`flex-1 py-1.5 rounded text-[10px] font-mono-tech border cursor-pointer ${
-                          rotaryAngle === deg ? 'bg-[#ff6b00] text-black font-bold' : 'bg-white/5 border-white/10 text-slate-400'
-                        }`}
-                      >
-                        {deg}°
-                      </button>
-                    ))}
-                  </div>
+                  {/* 03: Renishaw XR20-W Rotary Axis Calibrator Simulator */}
+                  {selectedTech === 2 && (
+                    <div className="rounded-xl bg-[#06080d] border border-white/10 p-6 space-y-4 text-left">
+                      <div className="flex items-center justify-between text-xs font-mono-tech text-slate-400 pb-3 border-b border-white/10">
+                        <span className="text-white font-bold">XR20-W ROTARY AXIS CALIBRATOR</span>
+                        <span className="text-[#ff6b00]">±1 ARCSECOND PRECISION</span>
+                      </div>
 
-                  <div className="p-2.5 rounded bg-white/[0.02] border border-white/5 text-[11px] font-mono-tech text-slate-300">
-                    <span className="text-[#ff6b00] font-bold">AUTO-CALIBRATION:</span> Pre-measurement calibration cycle automatically compensates for angular alignment errors.
-                  </div>
+                      {/* Rotary Axis Angular Visualizer */}
+                      <div className="relative h-60 rounded-lg bg-black border border-white/10 flex items-center justify-center p-4">
+                        
+                        {/* Rotary Table Representation */}
+                        <div className="relative w-44 h-44 rounded-full border-2 border-[#ff6b00] flex items-center justify-center bg-gradient-to-br from-[#1b2230] to-[#090b10] shadow-[0_0_25px_rgba(255,107,0,0.2)]">
+                          
+                          {/* Angular Tick Marks */}
+                          {[0, 45, 90, 135, 180, 225, 270, 315].map((ang) => (
+                            <div
+                              key={ang}
+                              className="absolute w-full h-[1px] bg-white/20"
+                              style={{ transform: `rotate(${ang}deg)` }}
+                            ></div>
+                          ))}
+
+                          {/* Motorized Indexing Indicator */}
+                          <div 
+                            className="absolute w-28 h-28 rounded-full border border-dashed border-amber-400 flex items-center justify-center transition-transform duration-700"
+                            style={{ transform: `rotate(${rotaryAngle}deg)` }}
+                          >
+                            <div className="w-3 h-3 rounded-full bg-[#ff6b00] -translate-y-14 shadow-[0_0_10px_#ff6b00]"></div>
+                          </div>
+
+                          {/* Center XR20-W Core */}
+                          <div className="w-16 h-16 rounded-full bg-[#0d1017] border border-white/30 flex flex-col items-center justify-center text-center z-10">
+                            <span className="text-[8px] font-mono-tech text-[#ff6b00] font-bold">XR20-W</span>
+                            <span className="text-[7px] font-mono-tech text-slate-300">{rotaryAngle}°</span>
+                          </div>
+                        </div>
+
+                        <div className="absolute top-3 left-3 text-[9px] font-mono-tech text-slate-400 bg-black/80 px-2 py-1 rounded border border-white/10">
+                          VERTICAL & HORIZONTAL MOUNTING
+                        </div>
+                      </div>
+
+                      {/* Rotary Angle Buttons */}
+                      <div className="flex items-center justify-between gap-2 pt-1">
+                        {[0, 45, 90, 180, 270, 360].map((deg) => (
+                          <button
+                            key={deg}
+                            onClick={() => setRotaryAngle(deg)}
+                            className={`flex-1 py-1.5 rounded text-[10px] font-mono-tech border cursor-pointer ${
+                              rotaryAngle === deg ? 'bg-[#ff6b00] text-black font-bold' : 'bg-white/5 border-white/10 text-slate-400'
+                            }`}
+                          >
+                            {deg}°
+                          </button>
+                        ))}
+                      </div>
+
+                      <div className="p-2.5 rounded bg-white/[0.02] border border-white/5 text-[11px] font-mono-tech text-slate-300">
+                        <span className="text-[#ff6b00] font-bold">AUTO-CALIBRATION:</span> Pre-measurement calibration cycle automatically compensates for angular alignment errors.
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
 
