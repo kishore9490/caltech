@@ -117,8 +117,8 @@ export const TECHNOLOGIES = [
       { src: "assets/instruments/renishaw-xc80-compensator.jpg", caption: "XC-80 Environmental Sensor & Thermal Probes" },
       { src: "assets/instruments/renishaw-carto-software.jpg", caption: "CARTO Metrology Capture & Compensation Suite" }
     ],
-    videoEmbedId: "A2dYq1m5o7g",
-    videoTitle: "Renishaw XL-80 Laser Measurement System: High Performance Machine Tool Calibration",
+    videoSrc: "assets/videos/laser-linear-measurement-live.mp4",
+    videoTitle: "Live Sub-Micron Laser Linear Measurement (399.997mm)",
     headline: "High-Performance Measurement & Calibration for Motion Systems and Machine Tools",
     desc: "The Renishaw XL-80 laser interferometer offers the ultimate in high-performance measurement and calibration for motion systems, including CMMs and CNC machine tools. Provides laser beam wavelength stability of ±0.05 ppm, calibrated with environmental sensor compensation for air temperature, air pressure, and material thermal growth.",
     capabilities: [
@@ -147,8 +147,8 @@ export const TECHNOLOGIES = [
       { src: "assets/instruments/renishaw-qc20-main.jpg", caption: "QC20 Volumetric 3-Plane Arc Testing Setup" },
       { src: "assets/instruments/renishaw-qc20-testing.jpg", caption: "QC20 Ballbar Circular Spindle Mount in CNC" }
     ],
-    videoEmbedId: "u-z-PqG8Nl8",
-    videoTitle: "Renishaw QC20-W Ballbar: Rapid 15-Minute Volumetric Contouring Test",
+    videoSrc: "assets/videos/dmg-mori-5axis-calibration.mp4",
+    videoTitle: "DMG MORI 5-Axis Machine Tool Laser & Motion Calibration",
     headline: "Determining Circularity Interpolation for Turning Centres & VMCs",
     desc: "The Renishaw Ballbar provides rapid, quantitative assessment of CNC machine tool contouring performance. By executing a circular test program with a calibrated telescoping transducer, it measures circularity deviation, backlash, reversal spikes, squareness error, cyclic error, and servo mismatch in 15 minutes.",
     capabilities: [
@@ -179,8 +179,8 @@ export const TECHNOLOGIES = [
       { src: "assets/instruments/renishaw-xr20-5axis.jpg", caption: "5-Axis Machine Tool Trunnion Alignment" },
       { src: "assets/instruments/renishaw-xr20-mounting-kit.jpg", caption: "Modular Centration & Mounting Ring Adapters" }
     ],
-    videoEmbedId: "T4S_23jX9t8",
-    videoTitle: "Renishaw XR20 Rotary Axis Calibrator: ±1 Arc Second Precision on 5-Axis Machines",
+    videoSrc: "assets/videos/xr20-5axis-rotary-calibration.mp4",
+    videoTitle: "Renishaw XR20 Rotary Axis Calibration on 5-Axis Table",
     headline: "Vertical & Horizontal Rotary Axis Calibration with XL-80 Collaboration",
     desc: "The XR20-W rotary axis calibrator works in collaboration with the XL-80 laser system providing highly accurate, repeatable rotary axis calibration for stages, indexing tables, trunnions, and 5-axis machine tools. Features auto-calibration pre-measurement cycle that automatically compensates for angular alignment errors.",
     capabilities: [
@@ -471,44 +471,64 @@ export const TEAM_MEMBERS = [
 
 export const METROLOGY_VIDEOS = [
   {
-    id: "xl80-demo",
-    title: "Renishaw XL-80 Laser System Overview",
-    subtitle: "High-accuracy linear, angular pitch/yaw and straightness measurement up to 80m",
-    tool: "RENISHAW XL-80",
-    embedId: "A2dYq1m5o7g",
-    duration: "03:45",
-    poster: "assets/instruments/renishaw-xl80-main.jpg",
-    tags: ["Laser Interferometer", "ISO 230-2", "Linear & Pitch/Yaw", "±0.5 ppm"]
-  },
-  {
-    id: "qc20-demo",
-    title: "Renishaw QC20 Ballbar Volumetric Arc Testing",
-    subtitle: "Rapid 15-minute contouring and circularity diagnosis on VMCs & CNC turning centres",
-    tool: "RENISHAW QC20-W",
-    embedId: "u-z-PqG8Nl8",
-    duration: "04:12",
-    poster: "assets/instruments/renishaw-qc20-main.jpg",
-    tags: ["Wireless Ballbar", "ISO 230-4", "Circularity Diagnosis", "XY/YZ/ZX Planes"]
-  },
-  {
-    id: "xr20-demo",
-    title: "Renishaw XR20 Rotary Axis Calibrator in Action",
-    subtitle: "High-precision rotary axis calibration for 5-axis machines, trunnions and rotary tables",
+    id: "xr20-5axis",
+    title: "Renishaw XR20 Rotary Axis Calibration",
+    subtitle: "On-site angular positioning and repeatability verification of 5-axis table to ±1 arc second",
     tool: "RENISHAW XR20-W",
-    embedId: "T4S_23jX9t8",
-    duration: "03:20",
-    poster: "assets/instruments/renishaw-xr20-main.jpg",
-    tags: ["Rotary Axis", "5-Axis Machine Tool", "±1 Arc Second", "Auto-Calibration"]
+    videoSrc: "assets/videos/xr20-5axis-rotary-calibration.mp4",
+    poster: "assets/videos/poster-xr20-5axis.jpg",
+    duration: "00:21",
+    tags: ["5-Axis CNC", "XR20 Rotary", "±1 Arcsec", "On-Site Field Video"]
   },
   {
-    id: "carto-demo",
-    title: "Renishaw CARTO Suite: Error Compensation",
-    subtitle: "Real-time error capture and controller pitch error compensation file generation",
-    tool: "CARTO SOFTWARE",
-    embedId: "wX-r53h_Ff0",
-    duration: "03:10",
-    poster: "assets/instruments/renishaw-carto-software.jpg",
-    tags: ["CNC Pitch Error", "Fanuc/Siemens", "Digital Calibration", "Audit Reports"]
+    id: "laser-linear-live",
+    title: "Live Sub-Micron Laser Linear Measurement",
+    subtitle: "Renishaw XL-80 interferometry measuring 399.997mm machine travel with live signal tracking",
+    tool: "RENISHAW XL-80",
+    videoSrc: "assets/videos/laser-linear-measurement-live.mp4",
+    poster: "assets/videos/poster-laser-linear.jpg",
+    duration: "00:25",
+    tags: ["Linear Accuracy", "Sub-Micron", "0.001 mm", "ISO 230-2"]
+  },
+  {
+    id: "xr20-swivel",
+    title: "XR20 on CNC Swivel Head with Turning Mirror",
+    subtitle: "Perpendicular beam steerer and dual retroreflector alignment on complex multi-axis head",
+    tool: "RENISHAW XR20-W",
+    videoSrc: "assets/videos/xr20-swivel-head-optics.mp4",
+    poster: "assets/videos/poster-xr20-swivel.jpg",
+    duration: "00:35",
+    tags: ["Multi-Axis Swivel", "Beam Steerer", "Turning Mirror", "Kinematics"]
+  },
+  {
+    id: "dmg-mori-5axis",
+    title: "DMG MORI 5-Axis Machine Tool Calibration",
+    subtitle: "Full kinematic laser interferometry and rotary axis compensation in machine enclosure",
+    tool: "DMG MORI & RENISHAW",
+    videoSrc: "assets/videos/dmg-mori-5axis-calibration.mp4",
+    poster: "assets/videos/poster-dmg-mori.jpg",
+    duration: "00:28",
+    tags: ["DMG MORI", "Aerospace Spec", "5-Axis Machining", "On-Site"]
+  },
+  {
+    id: "carto-xr20",
+    title: "CARTO Software Live Angular Error Tracking",
+    subtitle: "Real-time error logging across 30°, 60°, 90°, 120° and 150° rotation increments",
+    tool: "CARTO SUITE",
+    videoSrc: "assets/videos/carto-xr20-rotary-diagnostics.mp4",
+    poster: "assets/videos/poster-carto-xr20.jpg",
+    duration: "00:32",
+    tags: ["CARTO Suite", "Real-Time Graph", "Pitch Compensation", "Digital Audit"]
+  },
+  {
+    id: "xl80-5axis-align",
+    title: "XL-80 Laser Beam Tracking into 5-Axis Cradle",
+    subtitle: "Direct optical beam alignment through machine enclosure to rotary table fixture",
+    tool: "RENISHAW XL-80",
+    videoSrc: "assets/videos/xl80-5axis-laser-alignment.mp4",
+    poster: "assets/videos/poster-xl80-5axis.jpg",
+    duration: "00:12",
+    tags: ["Laser Beam", "633nm HeNe", "5-Axis Cradle", "High Precision"]
   }
 ];
 
