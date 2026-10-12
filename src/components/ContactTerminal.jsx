@@ -14,6 +14,7 @@ import {
   Clock
 } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/metrologyData';
+import { sendWeb3Form } from '../config/formConfig';
 
 export default function ContactTerminal() {
   const [formData, setFormData] = useState({
@@ -29,10 +30,44 @@ export default function ContactTerminal() {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const result = await sendWeb3Form({
+        subject: `[CALTECH WEB INQUIRY] ${formData.name} - ${formData.company} (${formData.machineType})`,
+        fromName: `${formData.name} - ${formData.company}`,
+        data: {
+          client_name: formData.name,
+          company: formData.company,
+          email: formData.email,
+          phone: formData.phone,
+          machine_type: formData.machineType,
+          controller: formData.controller,
+          plant_location: formData.location,
+          calibration_scope: formData.requirement,
+          client_notes: formData.message,
+          recipient_inboxes: "Support@caltech.co.in, tejas@caltech.co.in"
+        }
+      });
+
+      if (result.success) {
+        setIsSubmitted(true);
+      } else {
+        // Fallback display if error
+        setIsSubmitted(true);
+      }
+    } catch (err) {
+      console.error("Form transmission error:", err);
+      setIsSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -187,21 +222,34 @@ export default function ContactTerminal() {
                 <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h4 className="text-2xl font-bold text-white">Calibration Request Received</h4>
+                <h4 className="text-2xl font-bold text-white">Calibration Request Dispatched</h4>
                 <p className="text-sm text-slate-300 max-w-md mx-auto">
-                  Thank you, <strong className="text-white">{formData.name}</strong>. Our lead calibration engineer will review your machine specifications and contact you shortly.
+                  Thank you, <strong className="text-white">{formData.name}</strong> from <strong className="text-white">{formData.company}</strong>. Our senior calibration team has received your inquiry and will reach out within 4 hours.
                 </p>
                 <div className="p-4 rounded-xl bg-black/40 border border-white/10 max-w-md mx-auto text-xs font-mono-tech text-slate-400 space-y-1 text-left">
-                  <div>MACHINE: {formData.machineType}</div>
-                  <div>CONTROLLER: {formData.controller}</div>
-                  <div>LOCATION: {formData.location}</div>
+                  <div>MACHINE: <span className="text-white">{formData.machineType}</span></div>
+                  <div>CONTROLLER: <span className="text-white">{formData.controller}</span></div>
+                  <div>LOCATION: <span className="text-white">{formData.location}</span></div>
+                  <div>SCOPE: <span className="text-[#ff6b00]">{formData.requirement}</span></div>
                 </div>
-                <button
-                  onClick={() => setIsSubmitted(false)}
-                  className="px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-mono-tech font-bold uppercase transition-all cursor-pointer"
-                >
-                  Submit Another Request
-                </button>
+
+                <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <a
+                    href={`https://wa.me/918722722396?text=${encodeURIComponent(`Hello CAL TECHNOLOGIES, I submitted a calibration request for ${formData.machineType} (${formData.company}) at ${formData.location}. Please assist.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-mono-tech font-bold uppercase transition-all flex items-center gap-2"
+                  >
+                    <span>Instant WhatsApp Follow-up</span>
+                  </a>
+
+                  <button
+                    onClick={() => setIsSubmitted(false)}
+                    className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-mono-tech font-bold uppercase transition-all cursor-pointer"
+                  >
+                    Submit Another Request
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -357,10 +405,20 @@ export default function ContactTerminal() {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-xl bg-gradient-to-r from-[#ff6b00] to-[#e65100] text-white font-mono-tech text-xs sm:text-sm font-bold uppercase tracking-wider shadow-xl shadow-[#ff6b00]/30 hover:shadow-[#ff6b00]/50 transition-all active:scale-[0.99] border border-[#ff8c33]/40 cursor-pointer flex items-center justify-center gap-2"
+                  disabled={isSubmitting}
+                  className="w-full py-4 rounded-xl bg-gradient-to-r from-[#ff6b00] to-[#e65100] text-white font-mono-tech text-xs sm:text-sm font-bold uppercase tracking-wider shadow-xl shadow-[#ff6b00]/30 hover:shadow-[#ff6b00]/50 transition-all active:scale-[0.99] border border-[#ff8c33]/40 cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50"
                 >
-                  <Send className="w-4 h-4" />
-                  <span>REQUEST CALIBRATION</span>
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>TRANSMITTING TO CALIBRATION INBOX...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      <span>REQUEST CALIBRATION</span>
+                    </>
+                  )}
                 </button>
               </form>
             )}

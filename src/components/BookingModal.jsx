@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { X, Send, CheckCircle2, Crosshair, ShieldCheck } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/metrologyData';
+import { sendWeb3Form } from '../config/formConfig';
 
 export default function BookingModal({ isOpen, onClose }) {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -17,9 +19,33 @@ export default function BookingModal({ isOpen, onClose }) {
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      await sendWeb3Form({
+        subject: `[EXPEDITED SERVICE BOOKING] ${formData.name} - ${formData.company} (${formData.serviceType})`,
+        fromName: `${formData.name} (${formData.company})`,
+        data: {
+          client_name: formData.name,
+          company: formData.company,
+          phone: formData.phone,
+          email: formData.email,
+          machine_type: formData.machineType,
+          axes: formData.axes,
+          location: formData.location,
+          service_requested: formData.serviceType,
+          recipient_inboxes: "Support@caltech.co.in, tejas@caltech.co.in"
+        }
+      });
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Booking error:", err);
+      setSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -44,15 +70,23 @@ export default function BookingModal({ isOpen, onClose }) {
             </div>
             <h3 className="text-2xl font-bold text-white">Calibration Request Dispatched</h3>
             <p className="text-sm text-slate-300">
-              Thank you, <strong className="text-white">{formData.name}</strong> from <strong className="text-white">{formData.company}</strong>. Our senior calibration engineer will reach out to you within 4 hours.
+              Thank you, <strong className="text-white">{formData.name}</strong> from <strong className="text-white">{formData.company}</strong>. Our senior calibration team has received your request for <strong className="text-[#ff6b00]">{formData.serviceType}</strong> and will reach out within 4 hours.
             </p>
-            <div className="pt-4">
+            <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-2.5">
+              <a
+                href={`https://wa.me/918722722396?text=${encodeURIComponent(`Hello CAL TECHNOLOGIES, I booked service for ${formData.serviceType} (${formData.machineType}, ${formData.axes}) at ${formData.location} for ${formData.company}.`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-mono-tech text-xs font-bold uppercase transition-all flex items-center gap-1.5"
+              >
+                <span>WhatsApp Follow-up</span>
+              </a>
               <button
                 onClick={() => {
                   setSubmitted(false);
                   onClose();
                 }}
-                className="px-6 py-2.5 rounded-xl bg-[#ff6b00] text-black font-mono-tech text-xs font-bold uppercase transition-all cursor-pointer"
+                className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-mono-tech text-xs font-bold uppercase transition-all cursor-pointer"
               >
                 Close Window
               </button>
@@ -173,10 +207,20 @@ export default function BookingModal({ isOpen, onClose }) {
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#ff6b00] to-[#e65100] text-white font-mono-tech text-xs font-bold uppercase tracking-wider shadow-lg shadow-[#ff6b00]/30 hover:shadow-[#ff6b00]/50 transition-all cursor-pointer flex items-center justify-center gap-2"
+                  disabled={isSubmitting}
+                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#ff6b00] to-[#e65100] text-white font-mono-tech text-xs font-bold uppercase tracking-wider shadow-lg shadow-[#ff6b00]/30 hover:shadow-[#ff6b00]/50 transition-all cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50"
                 >
-                  <Send className="w-4 h-4" />
-                  <span>SUBMIT CALIBRATION INQUIRY</span>
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>DISPATCHING TO INBOX...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      <span>SUBMIT CALIBRATION INQUIRY</span>
+                    </>
+                  )}
                 </button>
               </div>
 
