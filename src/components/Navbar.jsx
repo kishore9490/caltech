@@ -75,9 +75,9 @@ export default function Navbar({ onOpenBooking }) {
             <span>+91 87227 22396</span>
           </a>
           <span className="text-white/20">|</span>
-          <a href="mailto:service@caltech.co.in" className="flex items-center gap-1.5 text-slate-400 hover:text-[#ff6b00] transition-colors">
+          <a href="mailto:Support@caltech.co.in" className="flex items-center gap-1.5 text-slate-400 hover:text-[#ff6b00] transition-colors">
             <Mail className="w-3 h-3 text-[#ff6b00]" />
-            <span>service@caltech.co.in</span>
+            <span>Support@caltech.co.in</span>
           </a>
           <span className="text-white/20">|</span>
           <span className="text-slate-500">HQ: BENGALURU</span>

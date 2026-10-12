@@ -11,9 +11,9 @@ export const COMPANY_DETAILS = {
     description: "Range includes CNC Machining Centres, CNC Lathes, CNC SPMs, CNC Grinders, and advanced multi-axis machine tools."
   },
   emails: [
+    { label: "Customer Support", address: "Support@caltech.co.in" },
     { label: "Engineering & Technical", address: "tejas@caltech.co.in" },
-    { label: "Customer Support", address: "support@caltech.co.in" },
-    { label: "Field Service & Maintenance", address: "service@caltech.co.in" }
+    { label: "General & Official", address: "caltechnologiesbangalore@gmail.com" }
   ],
   phones: [
     { number: "+91 8722722396", raw: "8722722396", display: "+91 87227 22396" },

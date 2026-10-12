@@ -87,10 +87,10 @@ export default function Footer() {
 
               <div className="pt-2">
                 <span className="text-[10px] text-slate-500 block">EMAIL INBOXES:</span>
-                <div className="space-y-1 mt-0.5">
+                <div className="space-y-1.5 mt-0.5">
+                  <a href="mailto:Support@caltech.co.in" className="text-slate-300 hover:text-[#ff6b00] block transition-colors">Support@caltech.co.in</a>
                   <a href="mailto:tejas@caltech.co.in" className="text-slate-300 hover:text-[#ff6b00] block transition-colors">tejas@caltech.co.in</a>
-                  <a href="mailto:service@caltech.co.in" className="text-slate-300 hover:text-[#ff6b00] block transition-colors">service@caltech.co.in</a>
-                  <a href="mailto:support@caltech.co.in" className="text-slate-300 hover:text-[#ff6b00] block transition-colors">support@caltech.co.in</a>
+                  <a href="mailto:caltechnologiesbangalore@gmail.com" className="text-slate-300 hover:text-[#ff6b00] block transition-colors break-all">caltechnologiesbangalore@gmail.com</a>
                 </div>
               </div>
 
