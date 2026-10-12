@@ -67,7 +67,7 @@ export default function TechnologyPage({ onOpenBooking }) {
           </div>
 
           <h1 className="text-4xl sm:text-6xl font-black text-white uppercase tracking-tight leading-tight">
-            MEASUREMENT <br />
+            CALIBRATION <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff6b00] via-[#ffaa00] to-amber-300">
               WITHOUT COMPROMISE.
             </span>

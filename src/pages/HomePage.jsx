@@ -189,7 +189,7 @@ export default function HomePage({ onOpenBooking }) {
                 FLAGSHIP INSTRUMENTATION
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-white uppercase tracking-tight">
-                Measurement Without Compromise
+                Calibration Without Compromise
               </h2>
             </div>
             <Link

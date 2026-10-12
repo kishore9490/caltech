@@ -54,7 +54,7 @@ export default function Technology({ onOpenBooking }) {
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight uppercase leading-tight">
-            MEASUREMENT <br />
+            CALIBRATION <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff6b00] via-[#ffaa00] to-amber-300">
               WITHOUT COMPROMISE.
             </span>
