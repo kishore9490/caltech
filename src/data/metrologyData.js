@@ -117,6 +117,8 @@ export const TECHNOLOGIES = [
       { src: "assets/instruments/renishaw-xc80-compensator.jpg", caption: "XC-80 Environmental Sensor & Thermal Probes" },
       { src: "assets/instruments/renishaw-carto-software.jpg", caption: "CARTO Metrology Capture & Compensation Suite" }
     ],
+    videoEmbedId: "A2dYq1m5o7g",
+    videoTitle: "Renishaw XL-80 Laser Measurement System: High Performance Machine Tool Calibration",
     headline: "High-Performance Measurement & Calibration for Motion Systems and Machine Tools",
     desc: "The Renishaw XL-80 laser interferometer offers the ultimate in high-performance measurement and calibration for motion systems, including CMMs and CNC machine tools. Provides laser beam wavelength stability of ±0.05 ppm, calibrated with environmental sensor compensation for air temperature, air pressure, and material thermal growth.",
     capabilities: [
@@ -145,6 +147,8 @@ export const TECHNOLOGIES = [
       { src: "assets/instruments/renishaw-qc20-main.jpg", caption: "QC20 Volumetric 3-Plane Arc Testing Setup" },
       { src: "assets/instruments/renishaw-qc20-testing.jpg", caption: "QC20 Ballbar Circular Spindle Mount in CNC" }
     ],
+    videoEmbedId: "u-z-PqG8Nl8",
+    videoTitle: "Renishaw QC20-W Ballbar: Rapid 15-Minute Volumetric Contouring Test",
     headline: "Determining Circularity Interpolation for Turning Centres & VMCs",
     desc: "The Renishaw Ballbar provides rapid, quantitative assessment of CNC machine tool contouring performance. By executing a circular test program with a calibrated telescoping transducer, it measures circularity deviation, backlash, reversal spikes, squareness error, cyclic error, and servo mismatch in 15 minutes.",
     capabilities: [
@@ -175,6 +179,8 @@ export const TECHNOLOGIES = [
       { src: "assets/instruments/renishaw-xr20-5axis.jpg", caption: "5-Axis Machine Tool Trunnion Alignment" },
       { src: "assets/instruments/renishaw-xr20-mounting-kit.jpg", caption: "Modular Centration & Mounting Ring Adapters" }
     ],
+    videoEmbedId: "T4S_23jX9t8",
+    videoTitle: "Renishaw XR20 Rotary Axis Calibrator: ±1 Arc Second Precision on 5-Axis Machines",
     headline: "Vertical & Horizontal Rotary Axis Calibration with XL-80 Collaboration",
     desc: "The XR20-W rotary axis calibrator works in collaboration with the XL-80 laser system providing highly accurate, repeatable rotary axis calibration for stages, indexing tables, trunnions, and 5-axis machine tools. Features auto-calibration pre-measurement cycle that automatically compensates for angular alignment errors.",
     capabilities: [
@@ -462,4 +468,48 @@ export const TEAM_MEMBERS = [
     badge: "Engineering Trainee"
   }
 ];
+
+export const METROLOGY_VIDEOS = [
+  {
+    id: "xl80-demo",
+    title: "Renishaw XL-80 Laser System Overview",
+    subtitle: "High-accuracy linear, angular pitch/yaw and straightness measurement up to 80m",
+    tool: "RENISHAW XL-80",
+    embedId: "A2dYq1m5o7g",
+    duration: "03:45",
+    poster: "assets/instruments/renishaw-xl80-main.jpg",
+    tags: ["Laser Interferometer", "ISO 230-2", "Linear & Pitch/Yaw", "±0.5 ppm"]
+  },
+  {
+    id: "qc20-demo",
+    title: "Renishaw QC20 Ballbar Volumetric Arc Testing",
+    subtitle: "Rapid 15-minute contouring and circularity diagnosis on VMCs & CNC turning centres",
+    tool: "RENISHAW QC20-W",
+    embedId: "u-z-PqG8Nl8",
+    duration: "04:12",
+    poster: "assets/instruments/renishaw-qc20-main.jpg",
+    tags: ["Wireless Ballbar", "ISO 230-4", "Circularity Diagnosis", "XY/YZ/ZX Planes"]
+  },
+  {
+    id: "xr20-demo",
+    title: "Renishaw XR20 Rotary Axis Calibrator in Action",
+    subtitle: "High-precision rotary axis calibration for 5-axis machines, trunnions and rotary tables",
+    tool: "RENISHAW XR20-W",
+    embedId: "T4S_23jX9t8",
+    duration: "03:20",
+    poster: "assets/instruments/renishaw-xr20-main.jpg",
+    tags: ["Rotary Axis", "5-Axis Machine Tool", "±1 Arc Second", "Auto-Calibration"]
+  },
+  {
+    id: "carto-demo",
+    title: "Renishaw CARTO Suite: Error Compensation",
+    subtitle: "Real-time error capture and controller pitch error compensation file generation",
+    tool: "CARTO SOFTWARE",
+    embedId: "wX-r53h_Ff0",
+    duration: "03:10",
+    poster: "assets/instruments/renishaw-carto-software.jpg",
+    tags: ["CNC Pitch Error", "Fanuc/Siemens", "Digital Calibration", "Audit Reports"]
+  }
+];
+
 

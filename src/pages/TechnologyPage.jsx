@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { TECHNOLOGIES } from '../data/metrologyData';
 import Technology from '../components/Technology';
+import TechnologyVideoSection from '../components/TechnologyVideoSection';
 
 export default function TechnologyPage({ onOpenBooking }) {
   const opticsList = [
@@ -95,6 +96,9 @@ export default function TechnologyPage({ onOpenBooking }) {
 
       {/* Main Interactive Metrology Tech Experience with Tool Images & Galleried Hardware Views */}
       <Technology onOpenBooking={onOpenBooking} />
+
+      {/* Cinematic Metrology Field Operation Videos Theater */}
+      <TechnologyVideoSection onOpenBooking={onOpenBooking} />
 
       {/* Equipment Comparison Matrix with Real Photos */}
       <section className="py-20 bg-[#08090e] border-t border-b border-white/10 relative">

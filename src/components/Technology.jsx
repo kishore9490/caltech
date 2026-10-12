@@ -14,7 +14,9 @@ import {
   Sliders,
   Camera,
   Eye,
-  Sparkles
+  Sparkles,
+  Play,
+  Film
 } from 'lucide-react';
 import { TECHNOLOGIES } from '../data/metrologyData';
 
@@ -181,32 +183,78 @@ export default function Technology({ onOpenBooking }) {
             {/* Right: Hardware Showcase & Interactive Simulator */}
             <div className="lg:col-span-6 space-y-4">
               
-              {/* View Switcher Tabs (Hardware vs Simulator) */}
-              <div className="flex items-center justify-between p-1.5 rounded-xl bg-black/60 border border-white/10">
+              {/* View Switcher Tabs (Hardware vs Video vs Simulator) */}
+              <div className="flex items-center justify-between p-1.5 rounded-xl bg-black/60 border border-white/10 gap-1">
                 <button
                   onClick={() => setViewMode('hardware')}
-                  className={`flex-1 py-2 px-3 rounded-lg text-xs font-mono-tech uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                  className={`flex-1 py-2 px-2.5 rounded-lg text-[11px] sm:text-xs font-mono-tech uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
                     viewMode === 'hardware'
                       ? 'bg-[#ff6b00] text-black font-bold shadow-md shadow-[#ff6b00]/20'
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
                   <Camera className="w-3.5 h-3.5" />
-                  <span>Official Tool Views</span>
+                  <span>Tool Views</span>
+                </button>
+
+                <button
+                  onClick={() => setViewMode('video')}
+                  className={`flex-1 py-2 px-2.5 rounded-lg text-[11px] sm:text-xs font-mono-tech uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                    viewMode === 'video'
+                      ? 'bg-[#ff6b00] text-black font-bold shadow-md shadow-[#ff6b00]/20'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                  <span>Video Demo</span>
                 </button>
 
                 <button
                   onClick={() => setViewMode('simulator')}
-                  className={`flex-1 py-2 px-3 rounded-lg text-xs font-mono-tech uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                  className={`flex-1 py-2 px-2.5 rounded-lg text-[11px] sm:text-xs font-mono-tech uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
                     viewMode === 'simulator'
                       ? 'bg-[#ff6b00] text-black font-bold shadow-md shadow-[#ff6b00]/20'
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
                   <Zap className="w-3.5 h-3.5" />
-                  <span>Kinematic Simulator</span>
+                  <span>Simulator</span>
                 </button>
               </div>
+
+              {/* Video Demonstration View */}
+              {viewMode === 'video' && (
+                <div className="rounded-2xl bg-[#06080d] border border-white/15 p-4 sm:p-6 space-y-4 shadow-xl text-left">
+                  <div className="flex items-center justify-between text-xs font-mono-tech text-slate-400 pb-2 border-b border-white/10">
+                    <span className="text-white font-bold flex items-center gap-1.5">
+                      <Film className="w-3.5 h-3.5 text-[#ff6b00]" />
+                      <span>{currentTech.name} IN ACTION</span>
+                    </span>
+                    <span className="text-[#ff6b00] bg-[#ff6b00]/10 px-2 py-0.5 rounded border border-[#ff6b00]/30 text-[10px]">
+                      1080P HD DEMO
+                    </span>
+                  </div>
+
+                  <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-black border border-white/10 shadow-2xl">
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${currentTech.videoEmbedId || 'A2dYq1m5o7g'}?autoplay=1&rel=0`}
+                      title={currentTech.videoTitle || currentTech.name}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full border-0"
+                    />
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">
+                    <h4 className="text-xs sm:text-sm font-bold text-white">
+                      {currentTech.videoTitle || `${currentTech.name} Field Operation`}
+                    </h4>
+                    <p className="text-[11px] text-slate-400 font-light leading-relaxed">
+                      Official operating footage illustrating dynamic axis verification, optical setup, and controller pitch compensation.
+                    </p>
+                  </div>
+                </div>
+              )}
 
               {/* 1. Official Tool Hardware Presentation */}
               {viewMode === 'hardware' && (
