@@ -236,13 +236,23 @@ export default function Technology({ onOpenBooking }) {
                   </div>
 
                   <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-black border border-white/10 shadow-2xl">
-                    <iframe
-                      src={`https://www.youtube-nocookie.com/embed/${currentTech.videoEmbedId || 'A2dYq1m5o7g'}?autoplay=1&rel=0`}
-                      title={currentTech.videoTitle || currentTech.name}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full h-full border-0"
-                    />
+                    {currentTech.videoSrc ? (
+                      <video
+                        src={`${import.meta.env.BASE_URL}${currentTech.videoSrc}`}
+                        poster={`${import.meta.env.BASE_URL}${currentTech.image}`}
+                        controls
+                        playsInline
+                        className="w-full h-full object-contain bg-black"
+                      />
+                    ) : (
+                      <iframe
+                        src={`https://www.youtube-nocookie.com/embed/${currentTech.videoEmbedId || 'A2dYq1m5o7g'}?autoplay=1&rel=0`}
+                        title={currentTech.videoTitle || currentTech.name}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="w-full h-full border-0"
+                      />
+                    )}
                   </div>
 
                   <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-1">

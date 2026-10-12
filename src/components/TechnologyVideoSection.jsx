@@ -63,13 +63,24 @@ export default function TechnologyVideoSection({ onOpenBooking }) {
           <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden bg-black border border-white/10 shadow-2xl">
             
             {isPlaying ? (
-              <iframe
-                src={`https://www.youtube-nocookie.com/embed/${activeVideo.embedId}?autoplay=1&rel=0`}
-                title={activeVideo.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full border-0"
-              />
+              activeVideo.videoSrc ? (
+                <video
+                  src={`${import.meta.env.BASE_URL}${activeVideo.videoSrc}`}
+                  poster={`${import.meta.env.BASE_URL}${activeVideo.poster}`}
+                  controls
+                  autoPlay
+                  playsInline
+                  className="w-full h-full object-contain bg-black"
+                />
+              ) : (
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${activeVideo.embedId}?autoplay=1&rel=0`}
+                  title={activeVideo.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full border-0"
+                />
+              )
             ) : (
               <div className="relative w-full h-full group cursor-pointer" onClick={() => setIsPlaying(true)}>
                 <img 
